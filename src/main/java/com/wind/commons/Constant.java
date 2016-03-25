@@ -163,8 +163,13 @@ public class Constant {
     }
     
     public class ArticleFrom {
-    	public static final String CSDNBLOGS = "http://blog.csdn.net/";//CSDN博客
-    	public static final String CNBLOGS= "http://www.cnblogs.com/";//博客园
+    	public static final String CSDNBLOGS = "http://blog.csdn.net";//CSDN博客
+    	public static final String CNBLOGS= "http://www.cnblogs.com";//博客园
+    }
+    //--------------------------------- link constant-----------------------------------------
+    public class LinkIsParse {
+    	public static final int YES = 1;
+    	public static final int NO = 0;
     }
     //--------------------------------- comment constant-----------------------------------------
     //评论根路径父ID

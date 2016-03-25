@@ -59,7 +59,7 @@ public class HttpUtil {
 				resultJson.put("content", EntityUtils.toString(entity));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			try { // 关闭流并释放资源
 				closeableHttpClient.close();

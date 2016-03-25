@@ -44,6 +44,7 @@ public class IdsService {
 		try {
 			boolean articleFlag = false;
 			boolean commentFlag = false;
+			boolean linkFlag = false;
 			MongoCollection<Document> coll = getColl();
 			if(coll==null) {
 				result.setSuccess(true);
@@ -57,6 +58,9 @@ public class IdsService {
 					if(doc.getString("name").equals("article")) {
 						articleFlag = true;
 					}
+					if(doc.getString("name").equals("link")) {
+						articleFlag = true;
+					}
 					if(doc.getString("name").equals("comment")) {
 						commentFlag = true;
 					}
@@ -66,6 +70,12 @@ public class IdsService {
 			if(!articleFlag) {
 				Document doc = new Document();
 				doc.put("name", "article");
+				doc.put("next_index", 0l);
+				coll.insertOne(doc);
+			}
+			if(!linkFlag) {
+				Document doc = new Document();
+				doc.put("name", "link");
 				doc.put("next_index", 0l);
 				coll.insertOne(doc);
 			}
