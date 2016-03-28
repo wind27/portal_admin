@@ -27,7 +27,8 @@ public class LinkTest {
 	@Resource
 	LinkService linkService;
 	
-	int threadNum = 0;
+	public static int threadStartNum = 0;
+	public static int threadEndNum = 0;
 	
 	ExecutorService pool = Executors.newFixedThreadPool(20);
 
@@ -36,6 +37,16 @@ public class LinkTest {
 		int start = 0;
 		int limit = 20;
 		while(start < 10000) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("****************************");
+			sb.append("start:"+start+", ");
+			sb.append("limit:"+limit + ", ");
+			sb.append("已启动线程数:"+threadStartNum+", ");
+			sb.append("已完成线程数:"+threadEndNum+", ");
+			sb.append("待处理线程数："+(threadStartNum-threadEndNum));
+			sb.append("****************************");
+			
+			System.out.println(sb.toString());
 			add(start, limit);
 			start += limit;
 		}
@@ -55,13 +66,16 @@ public class LinkTest {
 			for(int i=0; i<linkResult.getList().size(); i++) {
 				Link tmp = linkResult.getList().get(i);
 				if(tmp!=null) {
-					threadNum += 1;
-					Thread t = new Thread(new CSNDArticleThread(linkService, tmp));
-					try {
+					if(threadStartNum-threadEndNum < 20) {
+						threadStartNum += 1;
+						Thread t = new Thread(new CSNDArticleThread(linkService, tmp));
 						pool.execute(t);
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					} else {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}

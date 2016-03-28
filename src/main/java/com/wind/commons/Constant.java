@@ -171,6 +171,9 @@ public class Constant {
     	public static final int YES = 1;
     	public static final int NO = 0;
     }
+    public static final int LINK_START_THREAD = 0;
+    public static final int LINK_END_THREAD = 0;
+    
     //--------------------------------- comment constant-----------------------------------------
     //评论根路径父ID
     public static final int COMMENT_ROOT_PID = 0;
@@ -199,4 +202,9 @@ public class Constant {
     }
     public static final int DEFAULT_PAGE_START = 1;
     public static final int DEFAULT_PAGE_LIMIT = 20;
+    
+    public class UserRecommend {
+    	public static final int NEW_USER = 1;//新注册推荐用户
+    	public static final int DEFAULT = 2;//默认推荐用户
+    }
 }
